@@ -30,4 +30,8 @@ RUN docker-php-ext-install \
 RUN curl -sS https://getcomposer.org/installer | \
   php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN sed "s/^listen = .*/listen = 9000/" /usr/local/etc/php-fpm.d/www.conf
+RUN sed -i "s/^listen = .*/listen = 9000/" /usr/local/etc/php-fpm.d/www.conf
+
+EXPOSE 9000
+
+CMD ["php-fpm"]
