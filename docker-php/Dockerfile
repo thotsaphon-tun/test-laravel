@@ -32,11 +32,6 @@ RUN curl -sS https://getcomposer.org/installer | \
 
 RUN sed -i "s/^listen = .*/listen = 9000/" /usr/local/etc/php-fpm.d/www.conf
 
-RUN groupadd -g 1000 www-data && \
-    useradd -u 1000 -ms /bin/bash -g www-data www-data
-    
-USER www-data
-
 EXPOSE 9000
 
 CMD ["php-fpm"]
