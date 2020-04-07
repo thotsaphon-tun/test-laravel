@@ -27,8 +27,14 @@ RUN docker-php-ext-install \
   xsl \
   zip
 
+RUN pecl install -o -f redis \
+&&  rm -rf /tmp/pear \
+&&  docker-php-ext-enable redis
+
 RUN curl -sS https://getcomposer.org/installer | \
     php -- --install-dir=/usr/local/bin --filename=composer
+    
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN sed -i "s/^listen = .*/listen = 9000/" /usr/local/etc/php-fpm.d/www.conf
 
